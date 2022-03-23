@@ -1,10 +1,10 @@
 import grpc
 import dd_grps_sample_pb2_grpc as pb2_grpc
 import dd_grps_sample_pb2 as pb2
-#import unary_pb2 as pb2
 
 
-class UnaryClient(object):
+
+class ddClient(object):
     """
     Client for gRPC functionality
     """
@@ -13,7 +13,7 @@ class UnaryClient(object):
         self.host = 'localhost'
         self.server_port = 50051
 
-        # instantiate a channel
+       
         self.channel = grpc.insecure_channel(
             '{}:{}'.format(self.host, self.server_port))
 
@@ -21,15 +21,13 @@ class UnaryClient(object):
         self.stub = pb2_grpc.ddgreetingStub(self.channel)
 
     def get_url(self, message):
-        """
-        Client function to call the rpc for GetServerResponse
-        """
+
         message = pb2.Message(message=message)
         print(f'{message}')
         return self.stub.GetServerResponse(message)
 
 
 if __name__ == '__main__':
-    client = UnaryClient()
-    result = client.get_url(message="Hello Deepak Deopura, you there on server?")
+    client = ddClient()
+    result = client.get_url(message="Hello GRPC server")
     print(f'{result}')

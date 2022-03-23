@@ -3,9 +3,6 @@ syntax = "proto3";
 package ddgreeting;
 
 service ddgreeting{
-  // A simple RPC.
-  //
-  // Obtains the MessageResponse at a given position.
  rpc GetServerResponse(Message) returns (MessageResponse) {}
 
 }
